@@ -25,22 +25,19 @@ public class CollectionTestSuite {
         rezultat = obiektTestowy.exterminate(lista1);
 
                 //Then
-        Assertions.assertEquals(lista1, rezultat);
+        Assertions.assertTrue(rezultat.isEmpty());
     }
     @DisplayName("Sprawdzam, czy klasa zachowuje sie poprawnie, gdy lista zawiera liczby parzyste i nieparzyste.")
     @Test
     void testOddNumbersExterminatorNormalList(){
                 //Given
-        Integer a[] = new Integer[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        Integer b[] = new Integer[] {2, 4, 6, 8, 10};
-        List<Integer> pytanie = Arrays.asList(a);
-        final List<Integer> poprawnaOdpowiedz = Arrays.asList(b);
+        List<Integer> pytanie = Arrays.asList(new Integer[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10});
+        final List<Integer> poprawnaOdpowiedz = Arrays.asList(new Integer[] {2, 4, 6, 8, 10});
         List<Integer> rezultat = new ArrayList<>();
                 //When
         OddNumbersExterminator obiektTestowy = new OddNumbersExterminator();
         rezultat = obiektTestowy.exterminate(pytanie);
                 //Then
-        System.out.println(rezultat);
         Assertions.assertEquals(poprawnaOdpowiedz, rezultat);
     }
 }

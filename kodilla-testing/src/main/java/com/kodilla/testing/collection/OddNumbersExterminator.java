@@ -8,13 +8,11 @@ public class OddNumbersExterminator {
         if (numbers.isEmpty()) {
             return numbers;
         }
-        else {      // Metoda do skończenia
-            int liczba;
+        else {
             List<Integer> rezultat = new ArrayList<>();
             for(Integer entry : numbers){
-                liczba = entry;
-                if (liczba%2 == 0){
-                    rezultat.add(liczba);
+                if (entry%2 == 0){
+                    rezultat.add(entry);
                 }
             }
             return rezultat;
