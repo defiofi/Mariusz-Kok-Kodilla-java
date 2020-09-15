@@ -2,10 +2,7 @@ package com.kodilla.testing.weather.mock;
 
 import com.kodilla.testing.weather.stub.Temperatures;
 import com.kodilla.testing.weather.stub.WeatherForecast;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -33,6 +30,7 @@ class WeatherForecastTestSuite {
     @Mock
     private Temperatures temperaturesMock;  //Zamiast: Temperatures TemperaturesMock = mock(Temperatures.class);
 
+    @DisplayName("Test metody calculateForecast()")
     @Test
     void testCalculateForecastWithMock() {
 
@@ -45,6 +43,7 @@ class WeatherForecastTestSuite {
         //Then
         Assertions.assertEquals(5, quantityOfSensors);
     }
+    @DisplayName("Test metody averangeTemperature()")
     @Test
     void testAverageTemperatureWithMock() {
 
@@ -52,16 +51,12 @@ class WeatherForecastTestSuite {
         WeatherForecast weatherForecast = new WeatherForecast(temperaturesMock);
 
         //When
-        double Averagetemperature = weatherForecast.calculateForecast().get("Rzeszow");
-        Averagetemperature += weatherForecast.calculateForecast().get("Krakow");
-        Averagetemperature += weatherForecast.calculateForecast().get("Wroclaw");
-        Averagetemperature += weatherForecast.calculateForecast().get("Warszawa");
-        Averagetemperature += weatherForecast.calculateForecast().get("Gdansk");
-        double patern = (26.5+27.2+25.8+26.2+27.1)/5;
+        double patern = 25.56;
+
         //Then
-        Averagetemperature = Averagetemperature/weatherForecast.calculateForecast().size();
-        Assertions.assertEquals(patern, Averagetemperature);
+        Assertions.assertEquals(patern, weatherForecast.averangeTemperature());
     }
+    @DisplayName("Test medody medianTemperature()")
     @Test
     void testMedianTemperatureWithMock() {
 
@@ -69,25 +64,11 @@ class WeatherForecastTestSuite {
         WeatherForecast weatherForecast = new WeatherForecast(temperaturesMock);
 
         //When
-        double[] table = new double[5];
-        table[0] = weatherForecast.calculateForecast().get("Rzeszow");
-        table[1] = weatherForecast.calculateForecast().get("Krakow");
-        table[2] = weatherForecast.calculateForecast().get("Wroclaw");
-        table[3] = weatherForecast.calculateForecast().get("Warszawa");
-        table[4] = weatherForecast.calculateForecast().get("Gdansk");
-        double moment = 0;
-        for(int j = 0 ; j < weatherForecast.calculateForecast().size()-1 ; j++) {
-            for (int i = 0; i < weatherForecast.calculateForecast().size() - 1; i++) {
-                if (table[i + 1] > table[i]) {
-                    moment = table[i];
-                    table[i] = table[i + 1];
-                    table[i + 1] = moment;
-                }
-            }
-        }
+        double result = weatherForecast.medianTemperature();
+
         //Then
-        double result = table[2];
-        Assertions.assertEquals(26.5, result);
+
+        Assertions.assertEquals(25.5, result);
 
     }
 }
