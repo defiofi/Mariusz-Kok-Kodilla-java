@@ -17,12 +17,13 @@ import static org.mockito.Mockito.*;
 public class BookDirectoryTestSuite {
     private List<Book> generateListOfNBooks(int booksQuantity) {
         List<Book> resultList = new ArrayList<>();
-        for (int n = 1; n <= booksQuantity; n++){
+        for (int n = 1; n <= booksQuantity; n++) {
             Book theBook = new Book("Title " + n, "Author " + n, 1970 + n);
             resultList.add(theBook);
         }
         return resultList;
     }
+
     @Mock
     private LibraryDatabase libraryDatabaseMock;
 
@@ -89,20 +90,22 @@ public class BookDirectoryTestSuite {
         verify(libraryDatabaseMock, times(0)).listBooksWithCondition(anyString());
 
     }
+
     @Test
-    void testListBooksInHandsOfZeroBooks(){
+    void testListBooksInHandsOfZeroBooks() {
         // Given
         LibraryUser aLibraryUserMock = mock(LibraryUser.class);
         BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
 
         // When
-        List <Book> result = bookLibrary.listBooksInHandsOf(aLibraryUserMock);
+        List<Book> result = bookLibrary.listBooksInHandsOf(aLibraryUserMock);
 
         // Then
         assertEquals(0, result.size());
     }
+
     @Test
-    void testListBooksInHandsOfOneBook(){
+    void testListBooksInHandsOfOneBook() {
         // Given
         LibraryUser aLibraryUserMock = mock(LibraryUser.class);
         BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
@@ -113,13 +116,14 @@ public class BookDirectoryTestSuite {
                 .thenReturn(resultListOfBooks);
 
         // When
-        List <Book> result = bookLibrary.listBooksInHandsOf(aLibraryUserMock);
+        List<Book> result = bookLibrary.listBooksInHandsOf(aLibraryUserMock);
 
         // Then
         assertEquals(1, result.size());
     }
+
     @Test
-    void testListBooksInHandsOfFiveBooks(){
+    void testListBooksInHandsOfFiveBooks() {
         // Given
         LibraryUser aLibraryUserMock = mock(LibraryUser.class);
         BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
@@ -128,7 +132,7 @@ public class BookDirectoryTestSuite {
         Book book2 = new Book("Secretaries and Directors", "Dilbert Michigan", 2012);
         Book book3 = new Book("Secret life of programmers", "Steve Wolkowitz", 2016);
         Book book4 = new Book("Secrets of Java", "Ian Tenewitch", 2010);
-        Book book5 = new Book ( "Honor Królowej" , "David Weber" , 2012);
+        Book book5 = new Book("Honor Królowej", "David Weber", 2012);
         resultListOfBooks.add(book1);
         resultListOfBooks.add(book2);
         resultListOfBooks.add(book3);
@@ -138,7 +142,7 @@ public class BookDirectoryTestSuite {
                 .thenReturn(resultListOfBooks);
 
         // When
-        List <Book> result = bookLibrary.listBooksInHandsOf(aLibraryUserMock);
+        List<Book> result = bookLibrary.listBooksInHandsOf(aLibraryUserMock);
 
         // Then
         assertEquals(5, result.size());
