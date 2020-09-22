@@ -3,22 +3,27 @@ package com.kodilla.stream;
 import com.kodilla.stream.forumuser.Forum;
 import com.kodilla.stream.forumuser.ForumUser;
 
+import java.time.LocalDate;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import static java.time.LocalDate.now;
 
 public class StreamMain {
     public static void main(String[] args) {
         Forum aForum = new Forum();
-        Map<Integer , ForumUser> result = aForum.getUserList().stream()
+
+        Map<Integer , ForumUser> par = aForum.getUserList().stream()
                 .filter(ForumUser -> ForumUser.getSex() == 'M')
                 .filter(ForumUser -> ForumUser.getNumberOfPostsPublished()>0)
-                .filter(ForumUser -> ForumUser.getDateOfBirth().getYear()<2000)
+                .filter(ForumUser -> (LocalDate.now().getYear() - ForumUser.getDateOfBirth().getYear())>20)
                 .collect(Collectors.toMap(ForumUser::getUserIdentyfier,ForumUser -> ForumUser));
-        System.out.println("Ilość uzytkowników: "+result.entrySet().size());
-        result.entrySet().stream()
+        System.out.println("Ilość uzytkowników: "+par.entrySet().size());
+        String mapText = par.entrySet().stream()
                 .map(entry -> entry.getKey() + ": " + entry.getValue())
-                .forEach(System.out::println);
-                //.collect(Collectors.joining("/n","<",">"));   -   To mi się nie udało i nie wiem czemu.
+                .collect(Collectors.joining("\n" , "<" , ">"));
+        System.out.println(mapText);
+                //.forEach(System.out::println);    - inny sposób wyświetlenia Stream
 
     }
 }
