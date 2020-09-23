@@ -18,4 +18,15 @@ public class ArrayOperationsTestSuite {
         System.out.println(pattern);
         assertEquals(pattern, reply);
     }
+    @Test
+    void testGetAverageForEmptyTable(){
+        //Given
+        int [] exampleTable = {};
+
+        //When
+        Double reply = ArrayOperations.getAverage(exampleTable);
+
+        //Then
+        assertEquals(0.0, reply);
+    }
 }
