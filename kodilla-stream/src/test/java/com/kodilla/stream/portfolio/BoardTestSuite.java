@@ -159,11 +159,10 @@ public class BoardTestSuite {
                 .flatMap(taskList -> taskList.getTasks().stream())
                 .map(Task -> ChronoUnit.DAYS.between(Task.getCreated(), Task.getDeadline()))
                 .reduce(0L, (sum, curent) -> sum = sum + curent);
-        int number = project.getTaskLists().stream()
+        long number = project.getTaskLists().stream()
                 .filter(inProgressTasks::contains)
                 .flatMap(taskList -> taskList.getTasks().stream())
-                .map(Task -> 1)
-                .reduce(0, (sum, curent) -> sum = sum + curent);
+                .count();       //zlicza ilość elementów w strumieniu
         double score = 0;
         if (number != 0) {
             score = (double) numberOfDay / number;
