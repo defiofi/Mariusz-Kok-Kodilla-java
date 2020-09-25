@@ -157,7 +157,7 @@ public class BoardTestSuite {
         long numberOfDay = project.getTaskLists().stream()
                 .filter(inProgressTasks::contains)
                 .flatMap(taskList -> taskList.getTasks().stream())
-                .map(Task -> ChronoUnit.DAYS.between(Task.getCreated(), Task.getDeadline()))
+                .map(Task -> ChronoUnit.DAYS.between(Task.getCreated(), LocalDate.now()))
                 .reduce(0L, (sum, curent) -> sum = sum + curent);
         long number = project.getTaskLists().stream()
                 .filter(inProgressTasks::contains)
@@ -169,7 +169,7 @@ public class BoardTestSuite {
         }
         //Then
 
-        assertEquals(18.333333333333332, score);
+        assertEquals(10, score);
     }
 }
 
