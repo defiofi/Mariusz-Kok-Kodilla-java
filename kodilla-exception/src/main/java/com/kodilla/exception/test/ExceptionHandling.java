@@ -1,2 +1,13 @@
-package com.kodilla.exception.test;public class ExceptionHandling {
+package com.kodilla.exception.test;
+
+public class ExceptionHandling extends Exception{
+    public String except(double x, double y){
+        SecondChallenge aSecondChallenge = new SecondChallenge();
+        try{
+        return aSecondChallenge.probablyIWillThrowException(x,y);
+        }
+        catch(Exception e){
+            return "Exception";
+        }
+    }
 }
