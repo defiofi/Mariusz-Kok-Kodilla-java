@@ -26,7 +26,7 @@ public class SecondChallengeTestSuite {
         // when
         String test = aExceptionHandling.except(1.1 ,1.5);
         // then
-        assertThrows(ExceptionHandling.class , () -> secondChallenge.probablyIWillThrowException(1.1 , 1.5));
+        assertThrows(Exception.class , () -> secondChallenge.probablyIWillThrowException(1.1 , 1.5));
         Assertions.assertEquals("Exception", test);
     }
     @Test
@@ -37,7 +37,7 @@ public class SecondChallengeTestSuite {
         // when
         String test = aExceptionHandling.except(2 ,2);
         // then
-        assertThrows(ExceptionHandling.class , () -> secondChallenge.probablyIWillThrowException(2 , 2));
+        assertThrows(Exception.class , () -> secondChallenge.probablyIWillThrowException(2 , 2));
         Assertions.assertEquals("Exception", test);
     }
 }
