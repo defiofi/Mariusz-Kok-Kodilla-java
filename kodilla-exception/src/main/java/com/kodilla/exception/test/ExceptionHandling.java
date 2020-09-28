@@ -7,7 +7,7 @@ public class ExceptionHandling {
         return aSecondChallenge.probablyIWillThrowException(x,y);
         }
         catch(Exception e){
-            return "Exception";
+            return " Exception ";
         }
     }
 }
