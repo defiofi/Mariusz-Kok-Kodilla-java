@@ -35,9 +35,9 @@ public class StatisticTestsSuits {
         test.calculateAdvStatistics(statisticsMock);
         //Then
         test.showStatistics();
-        assertEquals(0,test.getAverageNumberOfPostsPerUser());
-        assertEquals(0,test.getAverageNumbersOfCommentsPerPosts());
-        assertEquals(0.1,test.getAverageNumbersOfCommentsPerUser());
+        assertEquals(0,test.getAverageNumberOfPostsPerUser(),0.0000001);
+        assertEquals(0,test.getAverageNumbersOfCommentsPerPosts(),0.0000001);
+        assertEquals(0.1,test.getAverageNumbersOfCommentsPerUser(),0.0000001);
     }
     @DisplayName("gdy liczba postow = 1000")
     @Test
@@ -51,9 +51,9 @@ public class StatisticTestsSuits {
         test.calculateAdvStatistics(statisticsMock);
         //Then
         test.showStatistics();
-        assertEquals(100 , test.getAverageNumberOfPostsPerUser());
-        assertEquals(0.1 , test.getAverageNumbersOfCommentsPerPosts());
-        assertEquals(10 , test.getAverageNumbersOfCommentsPerUser());
+        assertEquals(100 , test.getAverageNumberOfPostsPerUser(),0.0000001);
+        assertEquals(0.1 , test.getAverageNumbersOfCommentsPerPosts(),0.0000001);
+        assertEquals(10 , test.getAverageNumbersOfCommentsPerUser(),0.0000001);
     }
     @DisplayName("gdy liczba komentarzy = 0")
     @Test
@@ -67,9 +67,9 @@ public class StatisticTestsSuits {
         test.calculateAdvStatistics(statisticsMock);
         //Then
         test.showStatistics();
-        assertEquals(10 , test.getAverageNumberOfPostsPerUser());
-        assertEquals(0 , test.getAverageNumbersOfCommentsPerPosts());
-        assertEquals(0 , test.getAverageNumbersOfCommentsPerUser());
+        assertEquals(10 , test.getAverageNumberOfPostsPerUser(),0.0000001);
+        assertEquals(0 , test.getAverageNumbersOfCommentsPerPosts(),0.0000001);
+        assertEquals(0 , test.getAverageNumbersOfCommentsPerUser(),0.0000001);
     }
     @DisplayName("gdy liczba komentarzy < liczba postow")
     @Test
@@ -77,15 +77,15 @@ public class StatisticTestsSuits {
         //Given
         StatisticsOfForum test = new StatisticsOfForum();
         when(statisticsMock.usersNames()).thenReturn(listOfUsers(10));
-        when(statisticsMock.postsCount()).thenReturn(100);
-        when(statisticsMock.commentsCount()).thenReturn(10);
+        when(statisticsMock.postsCount()).thenReturn(213);
+        when(statisticsMock.commentsCount()).thenReturn(62);
         //When
         test.calculateAdvStatistics(statisticsMock);
         //Then
         test.showStatistics();
-        assertEquals(10 , test.getAverageNumberOfPostsPerUser());
-        assertEquals(0.1 , test.getAverageNumbersOfCommentsPerPosts());
-        assertEquals(1 , test.getAverageNumbersOfCommentsPerUser());
+        assertEquals(21.3 , test.getAverageNumberOfPostsPerUser(),0.0000001);
+        assertEquals(0.291079812 , test.getAverageNumbersOfCommentsPerPosts(),0.0000001);
+        assertEquals(6.2 , test.getAverageNumbersOfCommentsPerUser(),0.0000001);
     }
     @DisplayName("gdy liczba komentarzy > liczba postow")
     @Test
@@ -94,14 +94,14 @@ public class StatisticTestsSuits {
         StatisticsOfForum test = new StatisticsOfForum();
         when(statisticsMock.usersNames()).thenReturn(listOfUsers(10));
         when(statisticsMock.postsCount()).thenReturn(50);
-        when(statisticsMock.commentsCount()).thenReturn(500);
+        when(statisticsMock.commentsCount()).thenReturn(511);
         //When
         test.calculateAdvStatistics(statisticsMock);
         //Then
         test.showStatistics();
-        assertEquals(5 , test.getAverageNumberOfPostsPerUser());
-        assertEquals(10 , test.getAverageNumbersOfCommentsPerPosts());
-        assertEquals(50 , test.getAverageNumbersOfCommentsPerUser());
+        assertEquals(5 , test.getAverageNumberOfPostsPerUser(),0.0000001);
+        assertEquals(10.22 , test.getAverageNumbersOfCommentsPerPosts(),0.0000001);
+        assertEquals(51.1 , test.getAverageNumbersOfCommentsPerUser(),0.0000001);
     }
     @DisplayName("gdy liczba uzytkownikow = 0")
     @Test
@@ -115,9 +115,9 @@ public class StatisticTestsSuits {
         test.calculateAdvStatistics(statisticsMock);
         //Then
         test.showStatistics();
-        assertEquals(0 , test.getAverageNumberOfPostsPerUser());
-        assertEquals(5 , test.getAverageNumbersOfCommentsPerPosts());
-        assertEquals(0 , test.getAverageNumbersOfCommentsPerUser());
+        assertEquals(0 , test.getAverageNumberOfPostsPerUser(),0.0000001);
+        assertEquals(5 , test.getAverageNumbersOfCommentsPerPosts(),0.0000001);
+        assertEquals(0 , test.getAverageNumbersOfCommentsPerUser(),0.0000001);
     }
     @DisplayName("gdy liczba uzytkownikow = 100")
     @Test
@@ -126,14 +126,14 @@ public class StatisticTestsSuits {
         StatisticsOfForum test = new StatisticsOfForum();
         when(statisticsMock.usersNames()).thenReturn(listOfUsers(100));
         when(statisticsMock.postsCount()).thenReturn(20);
-        when(statisticsMock.commentsCount()).thenReturn(80);
+        when(statisticsMock.commentsCount()).thenReturn(81);
         //When
         test.calculateAdvStatistics(statisticsMock);
         //Then
         test.showStatistics();
-        assertEquals(0.2 , test.getAverageNumberOfPostsPerUser());
-        assertEquals(4 , test.getAverageNumbersOfCommentsPerPosts());
-        assertEquals(0.8 , test.getAverageNumbersOfCommentsPerUser());
+        assertEquals(0.2 , test.getAverageNumberOfPostsPerUser(),0.0000001);
+        assertEquals(4.05 , test.getAverageNumbersOfCommentsPerPosts(),0.0000001);
+        assertEquals(0.81 , test.getAverageNumbersOfCommentsPerUser(),0.0000001);
     }
 
 }
