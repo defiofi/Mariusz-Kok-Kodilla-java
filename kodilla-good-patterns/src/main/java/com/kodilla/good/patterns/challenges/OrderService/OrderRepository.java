@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class OrderRepository {
-    Set<OrderDTO> orderList = new HashSet<>();
+    private Set<OrderDTO> orderList = new HashSet<>();
     public void addOrder(OrderDTO orderDTO){
         orderList.add(orderDTO);
     }

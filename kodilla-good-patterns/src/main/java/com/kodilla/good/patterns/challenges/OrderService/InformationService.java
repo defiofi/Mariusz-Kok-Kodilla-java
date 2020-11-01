@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InformationService {
-    List<Product> listOfProducts = new ArrayList<>();
+    private List<Product> listOfProducts = new ArrayList<>();
     public void addProduct(Product product){
         listOfProducts.add(product);
     }
