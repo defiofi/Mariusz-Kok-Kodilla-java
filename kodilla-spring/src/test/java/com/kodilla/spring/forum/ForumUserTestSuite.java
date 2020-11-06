@@ -15,7 +15,7 @@ public class ForumUserTestSuite {
         ApplicationContext context =
                 new AnnotationConfigApplicationContext("com.kodilla.spring");
         //When
-        String name = context.getBean(ForumUser.class).username;
+        String name = context.getBean(ForumUser.class).getUsername();
         //Then
         assertEquals("John Smith", name);
     }
