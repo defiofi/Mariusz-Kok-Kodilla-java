@@ -19,6 +19,8 @@ public class BoardTestSuite {
         context.getBean(Board.class).getToDoList().addTask("Pierwsze zadanie do wykonania.");
         context.getBean(Board.class).getInProgressList().addTask("Pierwsze zadanie w trakcie realizacji.");
         context.getBean(Board.class).getDoneList().addTask("Pierwsze zrealizowane zadanie.");
+        System.out.println(context.getBean(Board.class).getToDoList().getTask(0));
+        System.out.println(context.getBean(Board.class).getInProgressList().getTask(0));
         //Then
         assertEquals("Pierwsze zadanie do wykonania.",context.getBean(Board.class).getToDoList().getTask(0));
         assertEquals("Pierwsze zadanie w trakcie realizacji.",context.getBean(Board.class).getInProgressList().getTask(0));
