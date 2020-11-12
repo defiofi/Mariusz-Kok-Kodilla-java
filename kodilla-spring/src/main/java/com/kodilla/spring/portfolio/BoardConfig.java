@@ -8,14 +8,16 @@ import org.springframework.context.annotation.Scope;
 
 @Configuration
 public class BoardConfig {
-/*
+
     @Autowired
     @Qualifier("TaskList1")
-    TaskList b1 ;
+    TaskList taskList1 ;
     @Autowired
-    @Qualifier("TaskList1")
-    TaskList b2 ;
-    TaskList b3 ;
+    @Qualifier("TaskList2")
+    TaskList taskList2 ;
+    @Autowired
+    @Qualifier("TaskList3")
+    TaskList taskList3 ;
 
 
     @Bean(name = "TaskList1")
@@ -23,11 +25,20 @@ public class BoardConfig {
     public TaskList toDoList(){
         return new TaskList();
     }
+    @Bean(name = "TaskList2")
+    @Scope("prototype")
+    public TaskList inProgressList(){
+        return new TaskList();
+    }
+    @Bean(name = "TaskList3")
+    @Scope("prototype")
+    public TaskList doneList(){
+        return new TaskList();
+    }
 
     @Bean
-    @Qualifier("taskList")
     public Board board(){
-        Board board = new Board(taskList1, b2, taskList3);
+        Board board = new Board(taskList1, taskList2, taskList3);
         return board;
-    }*/
+    }
 }
