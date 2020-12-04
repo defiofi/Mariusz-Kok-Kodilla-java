@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 public class Przykladtestow {
-    @Test
+  /*  @Test
     void testCircleLoadedIntoContainer() {
         //Given
         ApplicationContext context =
@@ -64,6 +64,6 @@ public class Przykladtestow {
 
         //Then
         System.out.println("Chosen shape says: " + name);
-    }
+    }*/
 }
 
