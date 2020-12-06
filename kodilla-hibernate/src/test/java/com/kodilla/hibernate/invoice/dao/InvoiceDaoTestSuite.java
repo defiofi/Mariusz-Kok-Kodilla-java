@@ -1,11 +1,11 @@
 package com.kodilla.hibernate.invoice.dao;
+
 import com.kodilla.hibernate.invoice.Invoice;
 import com.kodilla.hibernate.invoice.Item;
 import com.kodilla.hibernate.invoice.Product;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -31,21 +31,29 @@ public class InvoiceDaoTestSuite {
         invoice.getItems().add(item1);
         invoice.getItems().add(item2);
         invoice.getItems().add(item3);
-
+        System.out.println("ILOSC REKORDOW INVOICES= "+invoice.getItems().size());
         product.getItems().add(item1);
         product.getItems().add(item2);
         product.getItems().add(item3);
+        System.out.println("ILOSC REKORDOW PRODUCTS= "+product.getItems().size());
+        System.out.println("ID invoices = "+invoice.getItems().get(0).getId());
+        System.out.println("ID products = "+product.getItems().get(0).getId());
 
         //When
-        invoiceDao.save(invoice);
-
+       invoiceDao.save(invoice);
+        System.out.println("ID invoices = "+invoice.getItems().get(0).getId());
+        System.out.println("ID products = "+product.getItems().get(0).getId());
         int invoiceID = invoice.getId();
         int productID = product.getId();
         //Then
         assertNotEquals(0,invoiceID);
         assertNotEquals(0,productID);
         //CleanUp
-        invoiceDao.delete(invoice);
+        try {
+            invoiceDao.deleteById(invoiceID);
+        }catch (Exception e){
+            System.out.println("NIE KASUJĘ");
+        }
     }
 
 }
