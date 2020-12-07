@@ -32,10 +32,16 @@ public class InvoiceDaoTestSuite {
         invoice.getItems().add(item2);
         invoice.getItems().add(item3);
         System.out.println("ILOSC REKORDOW INVOICES= "+invoice.getItems().size());
+        item1.setInvoice(invoice);
+        item2.setInvoice(invoice);
+        item3.setInvoice(invoice);
         product.getItems().add(item1);
         product.getItems().add(item2);
         product.getItems().add(item3);
         System.out.println("ILOSC REKORDOW PRODUCTS= "+product.getItems().size());
+        item1.setProduct(product);
+        item2.setProduct(product);
+        item3.setProduct(product);
         System.out.println("ID invoices = "+invoice.getItems().get(0).getId());
         System.out.println("ID products = "+product.getItems().get(0).getId());
 
