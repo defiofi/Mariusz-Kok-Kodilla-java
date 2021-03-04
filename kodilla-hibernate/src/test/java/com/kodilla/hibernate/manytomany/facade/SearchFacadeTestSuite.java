@@ -22,22 +22,22 @@ public class SearchFacadeTestSuite {
     private SearchFacade searchFacade;
 
     @Test
-    void TestSearchFacadeEmployee(){
+    void TestSearchFacadeEmployee() {
         //GIVEN
         Employee employee1 = new Employee("Adam", "Kowalski");
         Employee employee2 = new Employee("Bartosz", "Nowak");
         Employee employee3 = new Employee("Cezary", "Rowalski");
         //WHEN
         employeeDao.save(employee1);
-        int id1= employee1.getId();
+        int id1 = employee1.getId();
         employeeDao.save(employee2);
-        int id2= employee2.getId();
+        int id2 = employee2.getId();
         employeeDao.save(employee3);
-        int id3= employee3.getId();
+        int id3 = employee3.getId();
         //THEN
         try {
             List<Employee> list = searchFacade.SearchEmployee("%walski%");
-            assertEquals(2 , list.size() );
+            assertEquals(2, list.size());
         } catch (SearchEmployeeFacadeException e) {
 
         }
@@ -48,7 +48,8 @@ public class SearchFacadeTestSuite {
     }
 
     @Test
-    void TestSearchFacadeCompany(){
+    void TestSearchFacadeCompany() throws SearchCompanyFacadeException {
+
         //GIVEN
         Company company1 = new Company("MicroTV");
         Company company2 = new Company("MacroTV");
@@ -61,15 +62,16 @@ public class SearchFacadeTestSuite {
         companyDao.save(company3);
         int id3 = company3.getId();
         //THEN
-        try{
-            List<Company> list = searchFacade.SearchCompany("%TV%");
-            assertEquals(3 , list.size() );
-        } catch (SearchCompanyFacadeException e) {
 
-        }
+        List<Company> list = searchFacade.SearchCompany("TV");
+        assertEquals(3, list.size());
+
         //CLEAN UP
-        companyDao.deleteById(id1);
-        companyDao.deleteById(id2);
-        companyDao.deleteById(id3);
+        try {
+            companyDao.deleteById(id1);
+            companyDao.deleteById(id2);
+            companyDao.deleteById(id3);
+        } catch (Exception e) {
+        }
     }
 }

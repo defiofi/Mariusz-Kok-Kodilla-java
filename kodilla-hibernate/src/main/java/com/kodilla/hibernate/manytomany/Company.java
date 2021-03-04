@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @NamedQuery(
-        name = "Company.findcompanyByname",
-        query = "SELECT c FROM Company c WHERE c.name LIKE :ARG"
+        name = "Company.findCompaniesByName",
+        query = "SELECT c FROM Company c WHERE c.name LIKE CONCAT('%',:ARG,'%') "
 )
 @NamedNativeQuery(
         name = "Company.findACompany",

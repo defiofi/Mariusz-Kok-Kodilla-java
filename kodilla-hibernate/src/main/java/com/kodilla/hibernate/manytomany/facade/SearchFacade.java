@@ -22,14 +22,15 @@ public class SearchFacade {
         this.employeeDao = employeeDao;
     }
     public List<Company> SearchCompany(String name ) throws SearchCompanyFacadeException{
-        List<Company> listCompany = companyDao.findACompany(name);
-        if (listCompany.size() == 0) {
+        List<Company> listCompany = companyDao.findCompaniesByName(name);
+        System.out.println("LISTCOMPANY ZAWARTOSC:"+listCompany);
+        if (listCompany.size() != 0) {
             return listCompany;
         }else{ throw new SearchCompanyFacadeException();}
     }
     public List<Employee>  SearchEmployee(String name) throws SearchEmployeeFacadeException{
         List<Employee> employeeList = employeeDao.findEmployeeByName(name);
-        if (employeeList.size() == 0) {
+        if (employeeList.size() != 0) {
             return employeeList;
         } else { throw new SearchEmployeeFacadeException();}
     }

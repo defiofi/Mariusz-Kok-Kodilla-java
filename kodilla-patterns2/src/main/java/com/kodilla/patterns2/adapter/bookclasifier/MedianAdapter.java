@@ -3,7 +3,6 @@ package com.kodilla.patterns2.adapter.bookclasifier;
 import com.kodilla.patterns2.adapter.bookclasifier.librarya.Book;
 import com.kodilla.patterns2.adapter.bookclasifier.librarya.Classifier;
 import com.kodilla.patterns2.adapter.bookclasifier.libraryb.BookSignature;
-import com.kodilla.patterns2.adapter.company.SalaryAdaptee;
 
 import java.util.HashMap;
 import java.util.List;
