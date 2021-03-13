@@ -13,11 +13,9 @@ public class FacebookTestingApp {
             "//div[contains(@class, \"_10 _9o-w uiLayer _4-hy _3thl _3qw\")]/div[2]/div/div/div/div/div[3]/button[2]";
     public static final String XPATH_CREATE_NEW_ACCOUNT =
             "//div[contains(@class, \"_li\")]/div[2]/div[1]/div/div/div/div[2]/div/div[1]/form/div[5]/a";
-    public static final String XPATH_REGISTER =
-            "//div[contains(@class, \"_n8 _3qx _8idq _8esf _8f3m _8fgk uiLayer _3qw\")]/div[2]/div/div/div[1]";
 
-    public static void main(String[] args){
-        WebDriver driver = WebDriverConfig.getDriver(WebDriverConfig.FIREFOX);
+    public static void main(String[] args) throws InterruptedException {
+        WebDriver driver = WebDriverConfig.getDriver(WebDriverConfig.CHROME);
         driver.get( "https://www.facebook.com/");
 
         while (!driver.findElement(By.xpath(XPATH_WAIT_FOR)).isDisplayed());
@@ -28,7 +26,7 @@ public class FacebookTestingApp {
         WebElement createAccountButton = driver.findElement(By.xpath(XPATH_CREATE_NEW_ACCOUNT));
         createAccountButton.click();
 
-        while (!driver.findElement(By.xpath(XPATH_REGISTER)).isDisplayed());
+        Thread.sleep(3000L);
 
         WebElement daySelect = driver.findElement(By.name("birthday_day"));
         Select selectDay = new Select(daySelect);
