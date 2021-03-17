@@ -70,7 +70,9 @@ public class CrudAppTestSuite {
                             theForm.findElement(By.xpath(".//button[contains(@class, \"card-creation\")]")); // [12]
                     buttonCreateCard.click();                                  // [13]
                 });                                                            // [14]
-        Thread.sleep(5000);                                                  // [15]
+        Thread.sleep(3000);
+        driver.switchTo().alert().accept();
+        Thread.sleep(2000);
     }
 
     private boolean checkTaskExistsInTrello(String taskName) throws InterruptedException {
@@ -89,16 +91,15 @@ public class CrudAppTestSuite {
         driverTrello.findElement(By.id("password")).sendKeys("QVgiCKUc4DeqpPq");		    // [7]
         driverTrello.findElement(By.id("login-submit")).submit();
 
-        Thread.sleep(4000);								                            // [8]
+        Thread.sleep(8000);								                            // [8]
 
-        driverTrello.findElements(By.xpath("//a[@class=\"board-title\"]")).stream()  // [9]
-                    .filter(aHref -> aHref.findElements(By.xpath(".//div[@title=\"Kodilla Application\"]")).size() > 0)  // [10]
-                    .forEach(WebElement::click);						                        // [11]
-
+        driverTrello.findElements(By.xpath("//a[@class=\"board-tile\"]")).stream()  // [9]
+                .filter(aHref -> aHref.findElements(By.xpath(".//div[@title=\"Kodilla Application\"]")).size() > 0) // [10]
+                .forEach(WebElement::click);
         Thread.sleep(4000);								                            // [12]
 
         result = driverTrello.findElements(By.xpath("//span")).stream()		        // [13]
-                    .anyMatch(theSpan -> theSpan.getText().equals(taskName));    		        // [14]
+                .anyMatch(theSpan -> theSpan.getText().equals(taskName));    		        // [14]
 
         driverTrello.close();							                            // [15]
 
@@ -106,12 +107,11 @@ public class CrudAppTestSuite {
     }
     private void cleanUp(String taskName) throws InterruptedException {
          List<WebElement> theList =  driver.findElements(By.xpath("//form[@class=\"datatable__row\"]")).stream()
-                 .filter(el -> el.getText().contains(taskName))
+                 .filter(a -> a.getText().contains(taskName))
                  .collect(Collectors.toList());
-         WebElement delButton = theList.get(0).findElement(By.xpath("//div/fieldset[1]/button[4]"));
+         WebElement delButton = theList.get(0).findElement(By.xpath(".//div/fieldset[1]/button[4]"));
          delButton.click();
          Thread.sleep(2000);
-
     }
     @Test
     public void shouldCreateTrelloCard() throws InterruptedException {
